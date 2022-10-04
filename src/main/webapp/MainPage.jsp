@@ -8,11 +8,13 @@
     </style>
 </head>
 <body>
-    <p>Guten Tag!</p>
-    <p>${currentDate}</p>
-    <h1>${currentUrl}</h1>
+    <header>
+        <H1>Guten Tag!</H1>
+        <p>Последнее обновление страницы в: <span>${currentDate}</span></p>
+        <h3>Путь: ${currentPath}</h3>
+    </header>
 
-    <a href="${url}/${parentPath}">Назад</a>
+    <a href="${url}?path=${parentPath}" class="back_btn">Назад</a>
 
     <table>
         <tr>
@@ -22,7 +24,7 @@
         </tr>
         <c:forEach items="${files}" var="file">
             <tr>
-                <td><a target="_blank" href="${url}file:///${file.getPath()}" download>${file.getName()}</a></td>
+                <td><a target="_blank" href="${downloadUrl}?path=${file.getPath()}" download>${file.getName()}</a></td>
                 <td>${file.getSize()}</td>
                 <td>${file.getCreationTime()}</td>
             </tr>

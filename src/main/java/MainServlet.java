@@ -1,21 +1,16 @@
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
-import java.util.stream.Stream;
 
 
 public class MainServlet extends HttpServlet {
@@ -26,7 +21,6 @@ public class MainServlet extends HttpServlet {
         final File path = new File(params.get("path")[0]);
         MyFile[] folders = listFoldersForFolder(path);
         MyFile[] files = listFilesForFolder(path);
-
         //current date
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
@@ -35,7 +29,9 @@ public class MainServlet extends HttpServlet {
         req.setAttribute("files", files);
         req.setAttribute("folders", folders);
         req.setAttribute("currentUrl",req.getRequestURI() + "?path=" + path.toString());
-        req.setAttribute("url",req.getRequestURI()  + "?path=");
+        req.setAttribute("currentPath",path.toString());
+        req.setAttribute("downloadUrl","http://localhost:8080" + "/web-application/download/");
+        req.setAttribute("url","http://localhost:8080" + req.getRequestURI());
         req.setAttribute("parentPath", path.getParent());
         req.getRequestDispatcher("MainPage.jsp").forward(req, resp);
     }
