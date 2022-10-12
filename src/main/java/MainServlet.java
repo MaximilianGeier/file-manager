@@ -10,15 +10,14 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Map;
 
 
 public class MainServlet extends HttpServlet {
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Map<String, String[]> params = req.getParameterMap();
-        final File path = new File(params.get("path")[0]);
+        //Map<String, String[]> params = req.getParameterMap();
+        //final File path = new File(params.get("path")[0]);
+        final File path = new File("c://");
         MyFile[] folders = listFoldersForFolder(path);
         MyFile[] files = listFilesForFolder(path);
         //current date

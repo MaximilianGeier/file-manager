@@ -1,2 +1,7 @@
+servlets\UsersServlet.class
+servlets\DownloadServlet.class
+accounts\AccountService.class
 MainServlet$MyFile.class
+accounts\UserProfile.class
 MainServlet.class
+servlets\SessionsServlet.class
