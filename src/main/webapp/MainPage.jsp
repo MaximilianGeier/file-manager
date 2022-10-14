@@ -12,9 +12,10 @@
         <H1>Guten Tag!</H1>
         <p>Последнее обновление страницы в: <span>${currentDate}</span></p>
         <h3>Путь: ${currentPath}</h3>
+        <a href="${url}logout" class="btn logout_btn">Log out</a>
     </header>
 
-    <a href="${url}?path=${parentPath}" class="back_btn">Назад</a>
+    <a href="${url}file?path=${parentPath}" class="btn">Назад</a>
 
     <table>
         <tr>
@@ -24,7 +25,7 @@
         </tr>
         <c:forEach items="${files}" var="file">
             <tr>
-                <td><a target="_blank" href="${downloadUrl}?path=${file.getPath()}" download>${file.getName()}</a></td>
+                <td><a target="_blank" href="${downloadUrl}file?path=${file.getPath()}" download>${file.getName()}</a></td>
                 <td>${file.getSize()}</td>
                 <td>${file.getCreationTime()}</td>
             </tr>

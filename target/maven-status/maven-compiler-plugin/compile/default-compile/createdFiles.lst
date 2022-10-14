@@ -1,7 +1,9 @@
-servlets\UsersServlet.class
+servlets\SignUpServlet.class
+main.class
+servlets\MainServlet$MyFile.class
 servlets\DownloadServlet.class
+accounts\ServiceManager.class
+servlets\SignInServlet.class
 accounts\AccountService.class
-MainServlet$MyFile.class
+servlets\MainServlet.class
 accounts\UserProfile.class
-MainServlet.class
-servlets\SessionsServlet.class

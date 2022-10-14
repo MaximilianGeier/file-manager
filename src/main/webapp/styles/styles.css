@@ -1,0 +1,42 @@
+body, *{
+    font-size: 18px;
+}
+
+table, tr, td {
+  border: 2px solid black;
+  text-align: center;
+}
+
+h1{
+    text-align: center;
+    color: red;
+}
+
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+.btn{
+    border: 1px dashed grey;
+    padding: 5px 10px;
+}
+
+.logout_btn{
+    position: absolute;
+    right: 5;
+    top: 5;
+}
+
+table{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p{
+    font-weight: bold;
+}
