@@ -3,7 +3,6 @@ package servlets;
 import accounts.AccountService;
 import accounts.ServiceManager;
 import accounts.UserProfile;
-import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -57,7 +56,7 @@ public class SignInServlet extends HttpServlet {
 
         if (login == null || pass == null) {
             response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST); //TODO
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         UserProfile currentUser;

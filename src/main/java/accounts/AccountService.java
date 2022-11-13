@@ -1,8 +1,6 @@
 package accounts;
 
-import servlets.Config;
-
-import java.sql.ResultSet;
+import database.ClientsDAO;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,29 +13,14 @@ public class AccountService {
     }
 
     public void addNewUser(UserProfile userProfile) throws SQLException {
-        System.out.println("добавление пользователя");
-        Config.doUpdate("insert into manager values('" + userProfile.getLogin() +
-                "', '" + userProfile.getPass() + "', '" + userProfile.getEmail() + "');");
+        ClientsDAO clientsDAO = new ClientsDAO();
+        clientsDAO.saveProfile(userProfile);
     }
 
     public UserProfile getUserByLogin(String login) throws SQLException {
-        UserProfile user = null;
-        ResultSet resultSet = null;
-        try {
-            resultSet = Config.doSelect("select * from manager where login = '" + login +"';");
-        }catch (SQLException e){
-
-        }
-        while(true){
-            if (!resultSet.next()) break;
-            try {
-                user = new UserProfile(resultSet.getString(1), resultSet.getString(2),
-                        resultSet.getString(3));
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
-        }
-        return user;
+        ClientsDAO clients = new ClientsDAO();
+        UserProfile profile = clients.getProfile(login);
+        return profile;
     }
 
     public UserProfile getUserBySessionId(String sessionId) {

@@ -1,7 +1,9 @@
 servlets\SignUpServlet.class
+database\ClientsDAO.class
 servlets\MainServlet$MyFile.class
 servlets\DownloadServlet.class
 accounts\ServiceManager.class
+database\DataSet.class
 servlets\SignInServlet.class
 accounts\AccountService.class
 servlets\MainServlet.class
