@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+
+    <servlet>
+        <servlet-name>first-servlet</servlet-name>
+        <servlet-class>servlets.MainServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>first-servlet</servlet-name>
+        <url-pattern>/file</url-pattern>
+        <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>second-servlet</servlet-name>
+        <servlet-class>servlets.DownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>second-servlet</servlet-name>
+        <url-pattern>/download/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>third-servlet</servlet-name>
+        <servlet-class>servlets.SignUpServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>third-servlet</servlet-name>
+        <url-pattern>/signup</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>fourth-servlet</servlet-name>
+        <servlet-class>servlets.SignInServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fourth-servlet</servlet-name>
+        <url-pattern>/signin</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>
+            servlets.Config
+        </listener-class>
+    </listener>
+</web-app>
