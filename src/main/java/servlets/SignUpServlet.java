@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class SignUpServlet extends HttpServlet {
     private AccountService accountService = ServiceManager.accounts;
@@ -35,20 +36,28 @@ public class SignUpServlet extends HttpServlet {
         File userDir = new File("/home/filemanager/"+login);
         boolean isCreated = userDir.mkdir();
 
-        if(accountService.getUserByLogin(login) == null && isCreated){
-            UserProfile user = new UserProfile(login, pass, email);
-            accountService.addNewUser(user);
-            accountService.addSession(request.getSession().getId(), accountService.getUserByLogin(user.getLogin()));
+        try {
+            if(accountService.getUserByLogin(login) == null && isCreated){
+                UserProfile user = new UserProfile(login, pass, email);
+                try {
+                    accountService.addNewUser(user);
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+                accountService.addSession(request.getSession().getId(), accountService.getUserByLogin(user.getLogin()));
 
-            //set coockie
-            Cookie cookie = new Cookie("idSession", request.getSession().getId());
-            cookie.setMaxAge(-1);
-            response.addCookie(cookie);
+                //set coockie
+                Cookie cookie = new Cookie("idSession", request.getSession().getId());
+                cookie.setMaxAge(-1);
+                response.addCookie(cookie);
 
-            response.sendRedirect(request.getContextPath() + "/file?path=/home/filemanager/" + user.getLogin());
-        }
-        else{
-            getServletContext().getRequestDispatcher("/signup.html").forward(request, response);
+                response.sendRedirect(request.getContextPath() + "/file?path=/home/filemanager/" + user.getLogin());
+            }
+            else{
+                getServletContext().getRequestDispatcher("/signup.html").forward(request, response);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 

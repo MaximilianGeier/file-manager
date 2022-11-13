@@ -1,5 +1,4 @@
 servlets\SignUpServlet.class
-main.class
 servlets\MainServlet$MyFile.class
 servlets\DownloadServlet.class
 accounts\ServiceManager.class
@@ -7,3 +6,4 @@ servlets\SignInServlet.class
 accounts\AccountService.class
 servlets\MainServlet.class
 accounts\UserProfile.class
+servlets\Config.class

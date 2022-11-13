@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 
 public class SignInServlet extends HttpServlet {
     private AccountService accountService = ServiceManager.accounts;
@@ -65,6 +66,8 @@ public class SignInServlet extends HttpServlet {
         }catch (NullPointerException e){
             response.sendRedirect(baseURL + "signin");
             return;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
         if (currentUser == null || !currentUser.getPass().equals(pass)) {
